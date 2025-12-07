@@ -1,0 +1,17 @@
+####################################
+# YoloV5模型权重路径
+weight:  "../best_recycle.pt"
+# 输入图像的尺寸
+input_size: 640
+# 类别个数
+class_num:  5
+# 标签名称
+class_name: ['bottle', 'can', 'carton', 'cup', 'paper']
+# 阈值设置
+threshold:
+  iou: 0.45
+  confidence: 0.4
+# 计算设备
+# - cpu
+# - 0 <- 使用GPU
+device: '0'

@@ -1,0 +1,53 @@
+cmake_minimum_required(VERSION 3.0)
+project(Preprocessing_Module)
+
+# ---------------------------------------------------------
+# 1. 寻找依赖库 (Dependencies)
+# ---------------------------------------------------------
+# 寻找 PCL (两个代码都需要)
+find_package(PCL 1.7 REQUIRED)
+
+# 寻找 OpenCV
+find_package(OpenCV REQUIRED)
+
+# 寻找 Boost 
+find_package(Boost REQUIRED COMPONENTS system filesystem thread)
+
+# ---------------------------------------------------------
+# 2. 全局配置 (Global Configurations)
+# ---------------------------------------------------------
+# 包含头文件路径
+include_directories(${PCL_INCLUDE_DIRS})
+include_directories(${OpenCV_INCLUDE_DIRS})
+include_directories(${Boost_INCLUDE_DIRS})
+
+# 添加 PCL 定义 (解决一些预处理器宏的问题)
+add_definitions(${PCL_DEFINITIONS})
+
+# 链接库目录
+link_directories(${PCL_LIBRARY_DIRS})
+
+# ---------------------------------------------------------
+# 3. 生成可执行文件 1: 聚类分割 (Segmentation)
+# ---------------------------------------------------------
+# 将原来的 main.cpp 重命名为 segmentation.cpp
+add_executable(segmentation segmentation.cpp)
+
+# 链接 PCL 和 Boost
+target_link_libraries(segmentation
+    ${PCL_LIBRARIES}
+    ${Boost_LIBRARIES}
+)
+
+# ---------------------------------------------------------
+# 4. 生成可执行文件 2: MLS平滑 (Smoothing)
+# ---------------------------------------------------------
+# 将原来的 main1.cpp 重命名为 smoothing.cpp
+add_executable(smoothing smoothing.cpp)
+
+# 链接 PCL, OpenCV 和 Boost
+target_link_libraries(smoothing
+    ${PCL_LIBRARIES}
+    ${OpenCV_LIBS}
+    ${Boost_LIBRARIES}
+)
