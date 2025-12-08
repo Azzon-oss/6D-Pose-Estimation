@@ -21,26 +21,24 @@ Object pose estimation is crucial in augmented reality and robotic manipulation.
 Note: This requirements.txt is for the Python environment (used by the YOLOv5 detection module and evaluation scripts). The core registration algorithm requires C++ PCL 1.8+, which must be installed as a system library (e.g., via apt-get install libpcl-dev on Ubuntu).
 
 ## 📂 6D_pose_Estimation
-
 ```text
 .
 ├── data/
 │   ├── models/               # CAD models (bottle1_model.pcd, etc.)
 │   └── scenes/               # Scene point clouds for testing
-├── yolov5/                # Stage 1: Object Detection (YOLOv5)
+├── yolov5/                   # Stage 1: Object detection (YOLOv5)
 │   ├── detect.py             # Inference script
 │   └── weights/              # Pre-trained weights
 ├── src/                      # Stage 2: Point Cloud Processing & Registration
-│   ├── preprocessing/        # Segmentation & MLS Smoothing
+│   ├── preprocessing/        # Segmentation & MLS smoothing
 │   ├── iss-3dsc-icp/         # ISS + 3DSC + Improved RANSAC + ICP
 │   └── indicators/           # Pose error calculation tools
 ├── CMakeLists.txt            # CMake configuration
 ├── requirements.txt          # Python dependencies
 └── README.md
+```
 
-
-
-##  🔗 Citation
+## 🔗 Citation
 If you find this code useful in your research, please consider citing our paper:
 @article{zhang2025accurate,
   title={Accurate 6D Pose Estimation Using Consumer-Grade Depth Cameras in Real-World Scenarios},
